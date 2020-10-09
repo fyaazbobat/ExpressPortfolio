@@ -1,0 +1,58 @@
+<!--Fyaaz Bobat - 301071094 - 10-09-2020 -->
+
+<%- include partials/header.ejs %>
+
+<%- include partials/main_nav.ejs %>
+
+  
+
+  <!-- Main Content -->
+<main class="container">
+<div class="row justify-content-md-center">
+  <div class="col-6">
+    <h2 class="h1"> <%= message %> </h2>
+    <hr class="my-4"> 
+  </div>
+</div>
+</main>
+
+<div class="row justify-content-md-center">
+	<div class="col-lg-8 col-md-8 col-sm-10 col-xs-10">
+
+		<form>
+			<div class="form-group">
+			  <label for="fullname">Full Name: </label>
+			  <input type="text" class="form-control" id="fullname" aria-describedby="fullname" 
+			  name="fullname" placeholder="Enter you Full Name" required>
+			</div>
+
+			<div class="form-group">
+				<label for="contactNumber">Contact Number:</label>
+				<input type="tel" class="form-control" id="contactNumber" aria-describedby="contactNumber" 
+				name="contactNumber" placeholder="Enter you Contact Number">
+			  </div>
+
+			  <div class="form-group">
+				<label for="emailAddress">Email address:</label>
+				<input type="email" class="form-control" id="emailAddress" aria-describedby="emailAddress" 
+				name="emailAddress" placeholder="Enter you Email Address" required>
+			  </div>
+
+			  <div class="form-group">
+				<label for="message">Your Message:</label>
+				<textarea class="form-control" id="message" rows="3" name="message" placeholder="Enter you message here..."></textarea>
+			  </div>
+	
+
+			<button type="submit" class="btn btn-lg btn-primary" id="sendButton"><i class="fas fa-paper-plane"></i> Send</button>
+			<button type="reset" class="btn btn-lg btn-warning" id="cancelButton"><i class="fas fa-undo"></i> Cancel</button>
+
+
+		  </form>
+	</div>
+</div>
+
+  
+ <%- include partials/bottom_nav.ejs %>
+  
+<%- include partials/footer.ejs %>
