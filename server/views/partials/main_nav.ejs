@@ -41,6 +41,14 @@
             <%} %>
             <a class="nav-link" href="/services"><i class="fas fa-cogs"></i> Services </a>
 
+             <% if (title == "Business") {%>
+          <li class="nav-item active">
+          <%} else { %>
+          <li class="nav-item">
+            <%} %>
+            <a class="nav-link" href="/business-contact"><i class="fa fa-briefcase" aria-hidden="true"></i>
+</i> Business Contact </a>
+
             <% if (title == "Contact") { %>
               <li class="nav-item active">
               <% } else { %>
