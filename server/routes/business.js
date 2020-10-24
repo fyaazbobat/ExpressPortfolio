@@ -6,102 +6,22 @@ const business = require('../models/business');
 //connect to contact
 let Business = require('../models/business');
 
-router.get('/', (req, res, next) =>{
-	Business.find((err, businessList) =>{
-		if(err)
-		{
-			return console.error(err);
-		}
-		else
-		{
-			//console.log(BusinessList);
+let businessController = require('../controllers/business')
 
-			res.render('business/list', {title: 'Business Contact', BusinessList: businessList});
-		}
-	});
-})
-
+router.get('/', businessController.displayBusinessList);
 /* GET Route for display add page - CREATE operation */
-router.get('/add', (req, res, next) => {
-	res.render('business/add', {title: 'Add Contact'});
 
-});
+router.get('/add', businessController.displayAddPage);
+
 /* POST Route for processing add page - CREATE operation */
-router.post('/add', (req, res, next) => {
-	let newBusiness = Business({
-		"name":req.body.name,
-		"phoneNumber": req.body.phoneNumber,
-		"email": req.body.email
-	});
-
-	Business.create(newBusiness, (err, Book) => {
-		if(err)
-		{
-			console.log(err);
-			res.end(err);
-		}
-		else
-		{
-			res.redirect('/business-contact');
-		}
-	})
-});
+router.post('/add', businessController.processAddPage)
 /* GET Route for display edit page - UPDATE operation */
-router.get('/edit/:id', (req, res, next) => {
-	let id = req.params.id;
-
-	Business.findById(id, (err, businessToEdit) => {
-		if(err)
-		{
-			console.log(err);
-			res.end(err);
-		}
-		else
-		{
-			res.render('business/edit', {title: 'Edit Business Contact', business: businessToEdit})
-		}
-	})
-});
+router.get('/edit/:id', businessController.displayEditPage)
 /* POST Route for processing edit page - UPDATE operation */
-router.post('/edit/:id', (req, res, next) => {
-	let id = req.params.id
 
-	let updatedBusiness = Business({
-		"_id":id,
-		"name":req.body.name,
-		"phoneNumber": req.body.phoneNumber,
-		"email": req.body.email
-	});
-	Business.updateOne({_id: id}, updatedBusiness, (err) => {
-		if(err)
-		{
-			console.log(err)
-			res.end(err);
-		}
-		else
-		{
-			res.redirect('/business-contact');
 
-		}
-	});
-});
+router.post('/edit/:id', businessController.processEditPage)
 
 /* GET to perfor deletion - delete operation */
-router.get('/delete:id', (req, res, next) => {
-	let id = req.params.id;
-
-	Business.remove({_id: id}, (err) => {
-		if(err)
-		{
-			console.log(err)
-			res.end(err);
-		}
-		else
-		{
-			res.redirect('/business-contact');
-
-		}
-	})
-});
-
+router.get('/delete:id', businessController.performDelete)
 module.exports = router;
